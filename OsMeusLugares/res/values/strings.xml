@@ -10,5 +10,6 @@
     <string name="acerca_de">Acerca De</string>
     <string name="salir">Salir</string>
     <string name="title_activity_edit_lugar">EditLugarActivity</string>
+    <string name="listado_lugares">Listado Lugares</string>
 
 </resources>

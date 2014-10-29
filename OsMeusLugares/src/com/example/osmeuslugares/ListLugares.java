@@ -1,16 +1,26 @@
 package com.example.osmeuslugares;
 
+import java.util.ArrayList;
+import java.util.Vector;
+
 import android.app.Activity;
+import android.app.ListActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
-public class ListLugares extends Activity {
+public class ListLugares extends ListActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_list_lugares);
+		String []lista = {"Sitio1", "Sitio2", "Sitio3"};
+		Vector<String> vector = new Vector<String>(3);
+		vector.add(lista[0]);
+		vector.add(lista[1]);
+		vector.add(lista[2]);
+		setListAdapter(new ListLugaresAdapter(this,vector));
 	}
 
 	@Override
