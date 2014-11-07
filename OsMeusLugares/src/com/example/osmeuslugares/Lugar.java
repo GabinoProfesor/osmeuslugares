@@ -16,6 +16,16 @@ public class Lugar {
 		this.nombre = nombre;
 		this.tipoLugar = tipoLugar;
 	}
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "Lugar [nombre=" + nombre + ", tipoLugar=" + tipoLugar.toString()
+				+ ", direccion=" + direccion.toString() + ", url=" + url + ", telefono="
+				+ telefono + ", comentario=" + comentario + "]";
+	}
+	
 	
 	
 }

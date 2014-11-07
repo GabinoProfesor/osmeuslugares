@@ -2,15 +2,17 @@ package com.example.osmeuslugares;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.preference.PreferenceActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
-public class PreferenciasActivity extends Activity {
+public class PreferenciasActivity extends PreferenceActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_preferencias);
+		//setContentView(R.layout.activity_preferencias);
+		this.addPreferencesFromResource(R.xml.preferencias);
 	}
 
 	@Override

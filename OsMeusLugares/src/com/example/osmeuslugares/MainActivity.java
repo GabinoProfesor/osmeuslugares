@@ -34,6 +34,11 @@ public class MainActivity extends Activity {
 			break;
 		}
 		
+		case R.id.action_settings: {
+			lanzarPreferencias();
+			break;
+		}
+		
 		case R.id.acerca_de: {
 			Toast.makeText(this, "Acerca De", 
 					Toast.LENGTH_SHORT).show();
@@ -55,5 +60,10 @@ public class MainActivity extends Activity {
 		Intent i = new Intent(this, ListLugares.class);
 		startActivity(i);
 		
+	}
+	
+	private void lanzarPreferencias() {
+		Intent i = new Intent(this, PreferenciasActivity.class);
+		startActivity(i);
 	}
 }

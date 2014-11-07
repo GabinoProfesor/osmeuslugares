@@ -6,10 +6,11 @@
     <string name="action_settings">Settings</string>
     <string name="title_activity_list_lugares">ListLugares</string>
     <string name="title_activity_acerca_de">AcercaDeActivity</string>
-    <string name="title_activity_preferencias">PreferenciasActivity</string>
     <string name="acerca_de">Acerca De</string>
     <string name="salir">Salir</string>
     <string name="title_activity_edit_lugar">EditLugarActivity</string>
     <string name="listado_lugares">Listado Lugares</string>
+    <string name="title_preferencias">Preferencias</string>
+    <string name="title_activity_preferencias">PreferenciasActivity</string>
 
 </resources>

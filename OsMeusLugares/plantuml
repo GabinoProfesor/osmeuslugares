@@ -5,4 +5,5 @@ MainActivity --> AcercaDeActivity
 MainActivity --> PreferenciasActivity
 ListLugaresActivity --> EditLugarActivity
 
+
 @enduml
