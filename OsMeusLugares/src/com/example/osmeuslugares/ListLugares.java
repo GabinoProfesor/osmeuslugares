@@ -10,17 +10,22 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 public class ListLugares extends ListActivity {
-
+	private ListLugaresAdapter listLugaresAdapter;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_list_lugares);
+		/*
 		String []lista = {"Sitio1", "Sitio2", "Sitio3"};
 		Vector<String> vector = new Vector<String>(3);
 		vector.add(lista[0]);
 		vector.add(lista[1]);
 		vector.add(lista[2]);
 		setListAdapter(new ListLugaresAdapter(this,vector));
+		*/
+		//Crear el objeto adaptador
+		// 
 	}
 
 	@Override

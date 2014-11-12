@@ -12,16 +12,16 @@ import android.widget.TextView;
 public class ListLugaresAdapter extends BaseAdapter {
 
 	private final Activity activity;
-	private final Vector<String> lista;
+	private final Vector<Lugar> lista;
 
 	/**
 	 * @param activity
 	 * @param lista
 	 */
-	public ListLugaresAdapter(Activity activity, Vector<String> lista) {
+	public ListLugaresAdapter(Activity activity) {
 		super();
 		this.activity = activity;
-		this.lista = lista;
+		this.lista = new Vector<Lugar>();
 	}
 
 	@Override
@@ -49,7 +49,8 @@ public class ListLugaresAdapter extends BaseAdapter {
 		View view = inflater.inflate(R.layout.elemento_lista, null, true);
 		TextView textViewTitulo = (TextView) view.findViewById(R.id.textViewTitulo);
 		//TextView textViewInfo = (TextView) view.findViewById(R.id.textViewInfo);
-		textViewTitulo.setText(lista.elementAt(position));
+		Lugar lugar = (Lugar)lista.elementAt(position);
+		textViewTitulo.setText(lugar.toString());
 		//Pendiente textViewUrl
 
 		return view;
