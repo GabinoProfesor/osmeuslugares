@@ -22,7 +22,10 @@ public class LugaresDb extends SQLiteOpenHelper {
 	public static final int C_NOMBRE = 1;
 	public static final int C_CATEGORIA = 2;
 	public static final int C_DIRECCION = 3;
-	
+	public static final int C_CIUDAD = 4;
+	public static final int C_TELEFONO = 5;
+	public static final int C_URL = 6;
+	public static final int C_COMENTARIO = 7;
 
 	public LugaresDb(Context context) {
 		super(context, nombre, factory, version);
@@ -34,16 +37,18 @@ public class LugaresDb extends SQLiteOpenHelper {
 		// TODO Auto-generated method stub
 		Log.i(LugaresDb.LOGTAG, "Creando Base de datos...");
 
-		String sql = "CREATE TABLE lugar(";
-		sql = sql.concat(" _id INTEGER PRIMARY KEY AUTOINCREMENT, ");
-		sql = sql.concat(" nombre TEXT NOT NULL, ");
-		sql = sql.concat(" categoria INTEGER NOT NULL, ");
-		sql = sql.concat(" direccion TEXT, ");
-		sql = sql.concat(" poblacion TEXT, ");
-		sql = sql.concat(" telefono TEXT, ");
-		sql = sql.concat(" url TEXT, ");
-		sql = sql.concat(" comentario TEXT);");
-		Log.i(getClass().toString(), sql);
+		String sql = "CREATE TABLE lugar(" +
+				"_id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+				"nombre TEXT NOT NULL, " +
+				"categoria INTEGER NOT NULL," +
+				"direccion TEXT," +
+				"ciudad TEXT," +
+				"telefono TEXT, " +
+				"url TEXT," +
+				"comentario TEXT);";
+		
+		Log.i(LugaresDb.LOGTAG, sql);
+		
 		db.execSQL(sql);
 
 		Log.i(LugaresDb.LOGTAG, "Base de datos creada");
@@ -52,6 +57,11 @@ public class LugaresDb extends SQLiteOpenHelper {
 		sql = "CREATE UNIQUE INDEX nombre ON Lugar(nombre ASC)";
 		db.execSQL(sql);
 
+		//Insertar datos de prueba
+		db.execSQL("INSERT INTO Lugar(nombre, categoria, direccion, ciudad, telefono, url, comentario) " +
+				"VALUES('Playa Riazor',1, 'Riazor','A Coru–a','981000000','','')");
+		   
+		
 	}
 
 	@Override
@@ -64,9 +74,13 @@ public class LugaresDb extends SQLiteOpenHelper {
 		Vector<Lugar> resultado = new Vector<Lugar>();
 		SQLiteDatabase db = this.getReadableDatabase();
 		Cursor cursor = db.rawQuery("SELECT * FROM Lugar", null);
+		// Se podr’a usar query() en vez de rawQuery
 		while (cursor.moveToNext()) {
 			Lugar lugar = new Lugar();
 			lugar.setId(cursor.getLong(C_ID));
+			lugar.setNombre(cursor.getString(C_NOMBRE));
+			
+			
 		}
 		return resultado;
 	}
