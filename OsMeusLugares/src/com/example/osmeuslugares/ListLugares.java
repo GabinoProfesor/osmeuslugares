@@ -26,6 +26,9 @@ public class ListLugares extends ListActivity {
 		*/
 		//Crear el objeto adaptador
 		// 
+		listLugaresAdapter = new ListLugaresAdapter(this);
+		listLugaresAdapter.abrir();
+		setListAdapter(listLugaresAdapter);
 	}
 
 	@Override

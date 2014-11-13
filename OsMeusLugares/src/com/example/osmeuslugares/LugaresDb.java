@@ -70,17 +70,21 @@ public class LugaresDb extends SQLiteOpenHelper {
 
 	}
 
-	public Vector<Lugar> cargarListadoLugares() {
+	public Vector<Lugar> cargarLugaresDesdeBD() {
 		Vector<Lugar> resultado = new Vector<Lugar>();
 		SQLiteDatabase db = this.getReadableDatabase();
 		Cursor cursor = db.rawQuery("SELECT * FROM Lugar", null);
 		// Se podr’a usar query() en vez de rawQuery
+		// join para recoger nombre categoria, previamente crear tabla de categorias
 		while (cursor.moveToNext()) {
 			Lugar lugar = new Lugar();
 			lugar.setId(cursor.getLong(C_ID));
 			lugar.setNombre(cursor.getString(C_NOMBRE));
-			
-			
+			Long idCategoria = cursor.getLong(C_CATEGORIA);
+			String nombreCategoria = "ND";
+			lugar.setCategoria(new Categoria(idCategoria, nombreCategoria));
+			//completar
+			resultado.add(lugar);
 		}
 		return resultado;
 	}
