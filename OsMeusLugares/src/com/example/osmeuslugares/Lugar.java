@@ -6,7 +6,8 @@ public class Lugar {
 	private Long id;
 	private String nombre;
 	private Categoria categoria;
-	private Direccion direccion;
+	private String direccion;
+	private String ciudad;
 	private String url;
 	private String telefono;
 	private String comentario;
@@ -67,10 +68,12 @@ public class Lugar {
 	}
 
 
+
+
 	/**
 	 * @return the direccion
 	 */
-	public Direccion getDireccion() {
+	public String getDireccion() {
 		return direccion;
 	}
 
@@ -78,8 +81,24 @@ public class Lugar {
 	/**
 	 * @param direccion the direccion to set
 	 */
-	public void setDireccion(Direccion direccion) {
+	public void setDireccion(String direccion) {
 		this.direccion = direccion;
+	}
+
+
+	/**
+	 * @return the ciudad
+	 */
+	public String getCiudad() {
+		return ciudad;
+	}
+
+
+	/**
+	 * @param ciudad the ciudad to set
+	 */
+	public void setCiudad(String ciudad) {
+		this.ciudad = ciudad;
 	}
 
 
@@ -136,11 +155,14 @@ public class Lugar {
 	 */
 	@Override
 	public String toString() {
-		return "Lugar [id=" + id + ", nombre="
-				+ nombre + ", categoria=" + categoria.toString() + ", direccion="
-				+ direccion.toString() + ", url=" + url + ", telefono=" + telefono
-				+ ", comentario=" + comentario + "]";
+		return "Lugar [id=" + id + ", nombre=" + nombre + ", categoria="
+				+ categoria.toString() + ", direccion=" + direccion + ", ciudad=" + ciudad
+				+ ", url=" + url + ", telefono=" + telefono + ", comentario="
+				+ comentario + "]";
 	}
+
+
+
 
 
 	

@@ -19,8 +19,7 @@ public class MainActivity extends Activity {
 		// TEST Crear BBDD
 		try {
 			LugaresDb lugaresDb = new LugaresDb(getBaseContext());
-
-			SQLiteDatabase db = lugaresDb.getWritableDatabase();
+			
 		} catch (Exception e) {
 			Log.e(getClass().toString(), e.getMessage());
 		}

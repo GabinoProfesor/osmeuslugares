@@ -55,10 +55,10 @@ public class ListLugaresAdapter extends BaseAdapter {
 		View view = inflater.inflate(R.layout.elemento_lista, null, true);
 		
 		TextView textViewTitulo = (TextView) view.findViewById(R.id.textViewTitulo);
-		//TextView textViewInfo = (TextView) view.findViewById(R.id.textViewInfo);
+		TextView textViewInfo = (TextView) view.findViewById(R.id.textViewInfo);
 		Lugar lugar = (Lugar)lista.elementAt(position);
 		textViewTitulo.setText(lugar.getNombre());
-		//Pendiente textViewUrl
+		textViewInfo.setText(lugar.toString());
 
 		return view;
 	}
