@@ -60,6 +60,8 @@ public class LugaresDb extends SQLiteOpenHelper {
 		//Insertar datos de prueba
 		db.execSQL("INSERT INTO Lugar(nombre, categoria, direccion, ciudad, telefono, url, comentario) " +
 				"VALUES('Playa Riazor',1, 'Riazor','A Coru–a','981000000','','')");
+		db.execSQL("INSERT INTO Lugar(nombre, categoria, direccion, ciudad, telefono, url, comentario) " +
+				"VALUES('Playa Orzan',1, 'Orzan','A Coru–a','981000000','','')");
 		   
 		
 	}
