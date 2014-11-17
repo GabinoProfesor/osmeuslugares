@@ -53,7 +53,7 @@ public class Categoria {
 	/**
 	 * @param nombre the Nombre to set
 	 */
-	public void setTipo(String nombre) {
+	public void setCategoria(String nombre) {
 		this.nombre = nombre;
 	}
 	/* (non-Javadoc)
