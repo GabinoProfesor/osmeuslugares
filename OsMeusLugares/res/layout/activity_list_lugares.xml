@@ -9,13 +9,29 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.osmeuslugares.ListLugares" >
 
-<TextView
-       android:layout_width="match_parent"
-       android:layout_height="wrap_content"
-       android:text="Listado de Sitios"
-       android:gravity="center"
-       android:layout_margin="10px"
-       android:textSize="10pt"/>
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal" >
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10px"
+        android:gravity="center"
+        android:text="Listado de Sitios"
+        android:textSize="10pt" />
+    
+<ImageButton
+    android:id="@+id/imageButtonAddLugar"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:onClick="imageButtonAddLugarOnClick"
+    android:src="@android:drawable/ic_menu_add" />
+
+</LinearLayout> 
+
 <FrameLayout
        android:layout_width="match_parent"
        android:layout_height="0dip"

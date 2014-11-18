@@ -6,6 +6,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 public class EditLugarActivity extends Activity {
 
@@ -21,7 +22,11 @@ public class EditLugarActivity extends Activity {
 		//		this, android.R.layout.simple_spinner_item,
 		//		listaTipos);
 		//spinnerTipo.setAdapter(adapter);
-		
+		if ()
+		Toast.makeText(getBaseContext(), "ADD",
+				Toast.LENGTH_LONG).show();
+		Toast.makeText(getBaseContext(), "EDIT",
+				Toast.LENGTH_LONG).show();
 		
 	}
 
