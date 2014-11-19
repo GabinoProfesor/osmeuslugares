@@ -7,6 +7,7 @@ import android.database.SQLException;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
@@ -46,7 +47,8 @@ public class CategoriasAdapter extends BaseAdapter {
 	@Override
 	public long getItemId(int position) {
 		// TODO Auto-generated method stub
-		return position;
+		Categoria categoria = (Categoria)getItem(position);
+		return categoria.getId();
 	}
 
 	@Override
@@ -58,5 +60,13 @@ public class CategoriasAdapter extends BaseAdapter {
 		text.setText(categoria.getNombre());
         return text;
 		
+	}
+	
+	
+	public int getPositionById(Long id) {
+		//Buscar en lista 
+		Categoria buscar = new Categoria();
+		buscar.setId(id);
+		return lista.indexOf(buscar);
 	}
 }

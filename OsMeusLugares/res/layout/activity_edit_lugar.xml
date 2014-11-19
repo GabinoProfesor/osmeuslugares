@@ -28,25 +28,27 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/textViewNombre" />
         <TextView
-        android:id="@+id/textViewTipo"
+        android:id="@+id/textViewCategoria"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Tipo" 
+        android:text="Categoria" 
         android:layout_below="@id/editTextNombre"
         android:textAppearance="?android:attr/textAppearanceMedium" 
         />
-        <Spinner 
-            android:id="@+id/spinnerTipo"
+
+        <Spinner
+            android:id="@+id/spinnerCategoria"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignTop="@id/textViewTipo"
-            android:layout_toRightOf="@id/textViewTipo"
-            />
+            android:layout_alignTop="@id/textViewCategoria"
+            android:layout_toRightOf="@id/textViewCategoria"
+            android:gravity="fill_horizontal" />
+
         <TextView
             android:id="@+id/textViewDireccion"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/textViewTipo"
+            android:layout_below="@id/textViewCategoria"
             android:textAppearance="?android:attr/textAppearanceMedium" 
             android:text="Dirección:" />
          <EditText

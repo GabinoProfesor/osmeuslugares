@@ -134,6 +134,8 @@ public class LugaresDb extends SQLiteOpenHelper {
 		SQLiteDatabase db = this.getReadableDatabase();
 		Cursor cursor = db.rawQuery("SELECT * FROM Categoria ORDER By cat_nombre",
 				null);
+		//Como es para un spinner incluir una primera opci—n por defecto
+		resultado.add(new Categoria(0L,"Seleccionar..."));
 		while (cursor.moveToNext()) {
 			Categoria categoria = new Categoria();
 			categoria.setId(cursor.getLong(cursor.getColumnIndex(Categoria.C_ID)));

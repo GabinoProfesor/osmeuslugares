@@ -42,14 +42,14 @@ public final class R {
         public static final int imageView1=0x7f0a0010;
         public static final int listLugares=0x7f0a0015;
         public static final int salir=0x7f0a0017;
-        public static final int spinnerTipo=0x7f0a0005;
+        public static final int spinnerCategoria=0x7f0a0005;
         public static final int textView1=0x7f0a000f;
+        public static final int textViewCategoria=0x7f0a0004;
         public static final int textViewComentario=0x7f0a000c;
         public static final int textViewDireccion=0x7f0a0006;
         public static final int textViewInfo=0x7f0a0013;
         public static final int textViewNombre=0x7f0a0002;
         public static final int textViewTelefono=0x7f0a0008;
-        public static final int textViewTipo=0x7f0a0004;
         public static final int textViewTitulo=0x7f0a0012;
         public static final int textViewUrl=0x7f0a000a;
     }

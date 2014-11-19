@@ -70,5 +70,24 @@ public class Categoria {
 	}
 
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(Object o) {
+		// TODO Auto-generated method stub
+		if (o instanceof Categoria) {
+			Categoria tmpCategoria = (Categoria)o;
+			if (getId()==tmpCategoria.getId()) {
+				return true;
+			} else{
+				return false;
+			}
+		}
+		return false;
+	}
+
+	
+
 	
 }

@@ -45,7 +45,8 @@ public class ListLugaresAdapter extends BaseAdapter {
 	@Override
 	public long getItemId(int position) {
 		// TODO Auto-generated method stub
-		return position;
+		Lugar lugar = (Lugar)getItem(position);
+		return lugar.getId();
 	}
 
 	@Override
@@ -62,4 +63,6 @@ public class ListLugaresAdapter extends BaseAdapter {
 
 		return view;
 	}
+	
+
 }

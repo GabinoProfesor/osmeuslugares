@@ -16,6 +16,6 @@ ListLugares -> ListLugaresAdapter: OnCreate:setAdpater
 ListLugares -> ListLugaresAdapter: OnCreate:abrir()
 create LugaresDb
 ListLugaresAdapter -> LugaresDb: cargarListadoLugaresDesdeBD
-ListLugaresAdapter <-> ListLugares: getView(): implicito
+ListLugaresAdapter -> ListLugares: getView()
 
 @enduml
