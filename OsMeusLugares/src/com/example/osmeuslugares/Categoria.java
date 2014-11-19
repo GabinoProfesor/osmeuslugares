@@ -4,6 +4,11 @@ public class Categoria {
 	private Long id;
 	private String nombre;
 	//private String icon;
+	
+	/* Mapeo BBDD */
+	// Campos Base de Datos Tabla Lugar
+	public static final String C_ID = "cat_id";
+	public static final String C_NOMBRE = "cat_nombre";
 	/**
 	 * @param id
 	 * @param nombre

@@ -41,7 +41,6 @@
             android:layout_height="wrap_content"
             android:layout_alignTop="@id/textViewTipo"
             android:layout_toRightOf="@id/textViewTipo"
-            android:entries="@array/tipos_lugares"
             />
         <TextView
             android:id="@+id/textViewDireccion"

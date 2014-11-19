@@ -19,13 +19,15 @@ public class MainActivity extends Activity {
 		// TEST Crear BBDD
 		try {
 			LugaresDb lugaresDb = new LugaresDb(getBaseContext());
+			Log.i("INFO", "BBDD creada");
+			Toast.makeText(getBaseContext(), "Base de datos preparada",
+					Toast.LENGTH_LONG).show();
 			
 		} catch (Exception e) {
 			Log.e(getClass().toString(), e.getMessage());
 		}
 
-		Toast.makeText(getBaseContext(), "Base de datos preparada",
-				Toast.LENGTH_LONG).show();
+		
 
 		// //////////////////
 

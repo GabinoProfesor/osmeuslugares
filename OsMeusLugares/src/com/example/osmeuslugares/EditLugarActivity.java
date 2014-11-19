@@ -10,24 +10,33 @@ import android.widget.Toast;
 
 public class EditLugarActivity extends Activity {
 
-	private Spinner spinnerTipo;
+	private Spinner spinnerCategoria;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_edit_lugar);
 		
-		spinnerTipo = (Spinner)findViewById(R.id.spinnerTipo);
+		spinnerCategoria = (Spinner)findViewById(R.id.spinnerTipo);
 		//String []listaTipos = {"Praias", "Restaurantes", "Outros"};
 		//ArrayAdapter<String> adapter = new ArrayAdapter<String>(
 		//		this, android.R.layout.simple_spinner_item,
 		//		listaTipos);
-		//spinnerTipo.setAdapter(adapter);
-		if ()
-		Toast.makeText(getBaseContext(), "ADD",
-				Toast.LENGTH_LONG).show();
-		Toast.makeText(getBaseContext(), "EDIT",
-				Toast.LENGTH_LONG).show();
 		
+	
+	    
+		CategoriasAdapter categoriasAdapter= new CategoriasAdapter(this); 
+		spinnerCategoria.setAdapter(categoriasAdapter);
+		
+		Bundle extras = new Bundle();
+	    extras = getIntent().getExtras();
+	    if (extras.getBoolean("add")) {
+	    		Toast.makeText(getBaseContext(), "ADD",
+					Toast.LENGTH_LONG).show();
+	    } else {
+	    	Toast.makeText(getBaseContext(), extras.getString(Lugar.C_NOMBRE),
+					Toast.LENGTH_LONG).show();
+	    }
+
 	}
 
 	@Override

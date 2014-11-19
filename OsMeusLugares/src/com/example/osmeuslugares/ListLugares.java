@@ -5,11 +5,14 @@ import java.util.Vector;
 
 import android.app.Activity;
 import android.app.ListActivity;
+import android.content.ContentValues;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ListView;
+import android.widget.Toast;
 
 public class ListLugares extends ListActivity {
 	private ListLugaresAdapter listLugaresAdapter;
@@ -24,16 +27,34 @@ public class ListLugares extends ListActivity {
 		setListAdapter(listLugaresAdapter);
 	}
 
-	private void imageButtonAddLugarOnClick(View v){
-		lanzarEditLugar();
+	public void imageButtonAddLugarOnClick(View v){
+		Bundle extras = new Bundle();
+		extras.putBoolean("add", true);
+		lanzarEditLugar(extras);
 	}
 	
-	private void lanzarEditLugar() {
+	/* (non-Javadoc)
+	 * @see android.app.ListActivity#onListItemClick(android.widget.ListView, android.view.View, int, long)
+	 */
+	@Override
+	protected void onListItemClick(ListView l, View v, int position, long id) {
+		// TODO Auto-generated method stub
+		super.onListItemClick(l, v, position, id);
+		Lugar itemLugar = (Lugar)getListAdapter().getItem(position);
+		Bundle extras = itemLugar.getBundle();
+		extras.putBoolean("add", false);
+		lanzarEditLugar(extras);
+		
+		/*
+		Toast.makeText(this, "Selecci—n: " + Integer.toString(position)
+		          +  " - " + itemLugar.toString(),Toast.LENGTH_LONG).show();
+		*/
+	}
+
+	private void lanzarEditLugar(Bundle extras) {
 		// TODO Auto-generated method stub
 		Intent i = new Intent(this, EditLugarActivity.class);
-		Bundle bundle = new Bundle();
-		bundle.putBoolean("add", true);
-		i.putExtras(bundle);
+		i.putExtras(extras);
 		startActivity(i);
 	}
 
