@@ -23,7 +23,6 @@ public class ListLugares extends ListActivity {
 		setContentView(R.layout.activity_list_lugares);
 
 		listLugaresAdapter = new ListLugaresAdapter(this);
-		listLugaresAdapter.abrir();
 		setListAdapter(listLugaresAdapter);
 	}
 
@@ -40,7 +39,8 @@ public class ListLugares extends ListActivity {
 	protected void onListItemClick(ListView l, View v, int position, long id) {
 		// TODO Auto-generated method stub
 		super.onListItemClick(l, v, position, id);
-		Lugar itemLugar = (Lugar)getListAdapter().getItem(position);
+		Lugar itemLugar = (Lugar)getListAdapter().
+				getItem(position);
 		Bundle extras = itemLugar.getBundle();
 		extras.putBoolean("add", false);
 		lanzarEditLugar(extras);

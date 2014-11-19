@@ -20,15 +20,6 @@ public class LugaresDb extends SQLiteOpenHelper {
 	private static CursorFactory factory = null;
 	private static int version = 2;
 
-	public static final int C_ID = 0;
-	public static final int C_NOMBRE = 1;
-	public static final int C_CATEGORIA_ID = 2;
-	public static final int C_DIRECCION = 3;
-	public static final int C_CIUDAD = 4;
-	public static final int C_TELEFONO = 5;
-	public static final int C_URL = 6;
-	public static final int C_COMENTARIO = 7;
-	public static final int C_CATEGORIA_NOMBRE = 8;
 
 	public LugaresDb(Context context) {
 		super(context, nombre, factory, version);
