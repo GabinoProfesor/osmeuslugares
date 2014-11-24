@@ -55,7 +55,22 @@ public class ListLugares extends ListActivity {
 		// TODO Auto-generated method stub
 		Intent i = new Intent(this, EditLugarActivity.class);
 		i.putExtras(extras);
-		startActivity(i);
+		startActivityForResult(i, 1234);
+	}
+
+	
+	/* (non-Javadoc)
+	 * @see android.app.Activity#onActivityResult(int, int, android.content.Intent)
+	 */
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		// TODO Auto-generated method stub
+		super.onActivityResult(requestCode, resultCode, data);
+		if (requestCode==1234 && resultCode==RESULT_OK) {
+			String resultado = data.getExtras().getString("resultado");
+			Toast.makeText(getBaseContext(), resultado, Toast.LENGTH_LONG).show();
+			
+		}
 	}
 
 	@Override

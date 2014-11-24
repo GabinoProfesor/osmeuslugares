@@ -1,10 +1,12 @@
 package com.example.osmeuslugares;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -96,4 +98,15 @@ public class EditLugarActivity extends Activity {
 		}
 		return super.onOptionsItemSelected(item);
 	}
+
+
+	public void buttonGuardarOnClick(View v) {
+		// TODO Auto-generated method stub
+		Intent i=new Intent();
+		i.putExtra("resultado", "RESULTADO..");
+		setResult(RESULT_OK, i);
+		finish();
+	}
+	
+	
 }

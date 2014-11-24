@@ -101,6 +101,15 @@
             android:layout_below="@id/textViewComentario"
             android:hint="introduce tus notas"
             android:inputType="textMultiLine" />
+
+        <Button
+            android:id="@+id/buttonGuardar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/editComentario"
+            android:onClick="buttonGuardarOnClick"
+            android:text="Guardar" />
+
     </RelativeLayout>
 
 
