@@ -3,11 +3,15 @@ package com.example.osmeuslugares;
 import java.util.Vector;
 
 import android.app.Activity;
+import android.content.res.Resources;
+import android.content.res.TypedArray;
 import android.database.SQLException;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class ListLugaresAdapter extends BaseAdapter {
@@ -55,15 +59,24 @@ public class ListLugaresAdapter extends BaseAdapter {
 		// TODO Auto-generated method stub
 		LayoutInflater inflater = activity.getLayoutInflater();
 		View view = inflater.inflate(R.layout.elemento_lista, null, true);
-		
+		ImageView imgViewIcono = (ImageView) view.findViewById(R.id.icono);
 		TextView textViewTitulo = (TextView) view.findViewById(R.id.textViewTitulo);
 		TextView textViewInfo = (TextView) view.findViewById(R.id.textViewInfo);
 		Lugar lugar = (Lugar)lista.elementAt(position);
 		textViewTitulo.setText(lugar.getNombre());
 		textViewInfo.setText(lugar.toString());
+		
+		Drawable icon = obtenDrawableIcon("XXXXXX");
+		imgViewIcono.setImageDrawable(icon);
 
 		return view;
 	}
 	
-
+	public Drawable obtenDrawableIcon(String icon) {
+		Resources res =  activity.getResources();
+		TypedArray iconosLugares = res.obtainTypedArray(R.array.iconos_lugares);
+		//
+		return iconosLugares.getDrawable(0);
+	}
+	
 }

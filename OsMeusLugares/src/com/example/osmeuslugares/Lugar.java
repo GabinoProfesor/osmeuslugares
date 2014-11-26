@@ -208,7 +208,11 @@ public class Lugar {
 	void setBundle(Bundle bundle) {
 		id=bundle.getLong(C_ID);
 		nombre=bundle.getString(C_NOMBRE);
-		categoria=new Categoria(bundle.getLong(C_CATEGORIA_ID), bundle.getString(Categoria.C_NOMBRE));
+		
+		categoria=new Categoria();
+		categoria.setId(bundle.getLong(C_CATEGORIA_ID));
+		categoria.setNombre(bundle.getString(Categoria.C_NOMBRE));
+		
 		direccion=bundle.getString(C_DIRECCION);
 		ciudad=bundle.getString(C_CIUDAD);
 		telefono=bundle.getString(C_TELEFONO);

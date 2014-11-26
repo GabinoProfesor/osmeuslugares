@@ -2,8 +2,10 @@ package com.example.osmeuslugares;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -27,10 +29,25 @@ public class MainActivity extends Activity {
 			Log.e(getClass().toString(), e.getMessage());
 		}
 
-		
+		/* Leer preferencia de mœsica */
+		boolean reproduccirMusica = getPreferenciaMusica();
+		if (reproduccirMusica){
+			Toast.makeText(getBaseContext(), "Mœsica ON",
+					Toast.LENGTH_LONG).show();
+		} else {
+			Toast.makeText(getBaseContext(), "Mœsica OFF",
+					Toast.LENGTH_LONG).show();
+		}
 
 		// //////////////////
 
+	}
+	
+	public boolean getPreferenciaMusica(){
+		SharedPreferences preferencias =
+	            PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+		return preferencias.getBoolean("musica", false);
+		
 	}
 
 	@Override

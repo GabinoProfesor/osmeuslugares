@@ -22,13 +22,7 @@
         android:gravity="center"
         android:text="Listado de Sitios"
         android:textSize="10pt" />
-    
-<ImageButton
-    android:id="@+id/imageButtonAddLugar"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:onClick="imageButtonAddLugarOnClick"
-    android:src="@android:drawable/ic_menu_add" />
+  
 
 </LinearLayout> 
 

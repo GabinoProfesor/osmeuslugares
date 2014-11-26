@@ -12,5 +12,8 @@
     <string name="listado_lugares">Listado Lugares</string>
     <string name="title_preferencias">Preferencias</string>
     <string name="title_activity_preferencias">PreferenciasActivity</string>
+    <string name="add_lugar">Engadir Lugar</string>
+    <string name="edit_lugar">Editar Lugar</string>
+    <string name="edit_delete">Eliminar Lugar</string>
 
 </resources>

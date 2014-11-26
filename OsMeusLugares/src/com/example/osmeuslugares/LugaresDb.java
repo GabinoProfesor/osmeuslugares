@@ -109,7 +109,9 @@ public class LugaresDb extends SQLiteOpenHelper {
 			lugar.setNombre(cursor.getString(cursor.getColumnIndex(Lugar.C_NOMBRE)));
 			Long idCategoria = cursor.getLong(cursor.getColumnIndex(Lugar.C_CATEGORIA_ID));
 			String nombreCategoria = cursor.getString(cursor.getColumnIndex(Categoria.C_NOMBRE));
+			
 			lugar.setCategoria(new Categoria(idCategoria, nombreCategoria));
+			
 			lugar.setDireccion(cursor.getString(cursor.getColumnIndex(Lugar.C_DIRECCION)));
 			lugar.setCiudad(cursor.getString(cursor.getColumnIndex(Lugar.C_CIUDAD)));
 			lugar.setTelefono(cursor.getString(cursor.getColumnIndex(Lugar.C_TELEFONO)));
