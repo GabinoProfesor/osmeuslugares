@@ -177,12 +177,14 @@ public class Lugar {
 				+ ", url=" + url + ", telefono=" + telefono + ", comentario="
 				+ comentario + "]";
 	}
-
+/**
+ * Generado para insertar/actualizar registro Lugar en BBDD
+ * @return
+ */
 	ContentValues getContentValues() {
 		ContentValues reg = new ContentValues();
 		reg.put(C_NOMBRE, nombre);
 		reg.put(C_CATEGORIA_ID, categoria.getId());
-		reg.put(Categoria.C_NOMBRE, categoria.getNombre());
 		reg.put(C_DIRECCION, direccion);
 		reg.put(C_CIUDAD, ciudad);
 		reg.put(C_URL, url);
@@ -195,8 +197,11 @@ public class Lugar {
 		Bundle bundle = new Bundle();
 		bundle.putLong(C_ID, id);
 		bundle.putString(C_NOMBRE, nombre);
+		
 		bundle.putLong(C_CATEGORIA_ID, categoria.getId());
 		bundle.putString(Categoria.C_NOMBRE, categoria.getNombre());
+		bundle.putString(Categoria.C_ICON, categoria.getIcon());
+		
 		bundle.putString(C_DIRECCION, direccion);
 		bundle.putString(C_CIUDAD, ciudad);
 		bundle.putString(C_URL, url);
@@ -212,6 +217,7 @@ public class Lugar {
 		categoria=new Categoria();
 		categoria.setId(bundle.getLong(C_CATEGORIA_ID));
 		categoria.setNombre(bundle.getString(Categoria.C_NOMBRE));
+		categoria.setIcon(bundle.getString(Categoria.C_ICON));
 		
 		direccion=bundle.getString(C_DIRECCION);
 		ciudad=bundle.getString(C_CIUDAD);

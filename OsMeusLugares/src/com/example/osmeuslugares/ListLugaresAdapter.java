@@ -1,5 +1,8 @@
 package com.example.osmeuslugares;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Vector;
 
 import android.app.Activity;
@@ -20,6 +23,10 @@ public class ListLugaresAdapter extends BaseAdapter {
 	private Vector<Lugar> lista;
 	private LugaresDb lugaresDb;
 
+	Resources res;
+	TypedArray drawableIconosLugares;
+	List<String> valoresIconosLugares;
+
 	/**
 	 * @param activity
 	 * @param lista
@@ -29,12 +36,22 @@ public class ListLugaresAdapter extends BaseAdapter {
 		this.activity = activity;
 		this.lista = new Vector<Lugar>();
 		actualizarDesdeBd();
+
+		// Cargar recursos iconos
+		res = activity.getResources();
+		drawableIconosLugares = res
+				.obtainTypedArray(R.array.drawable_iconos_lugares);
+		
+		valoresIconosLugares = (List<String>) Arrays.asList(res
+				.getStringArray(R.array.valores_iconos_lugares));
+		
 	}
 
-	public void actualizarDesdeBd() throws SQLException{
+	public void actualizarDesdeBd() throws SQLException {
 		lugaresDb = new LugaresDb(activity);
 		this.lista = lugaresDb.cargarLugaresDesdeBD();
 	}
+
 	@Override
 	public int getCount() {
 		// TODO Auto-generated method stub
@@ -50,7 +67,7 @@ public class ListLugaresAdapter extends BaseAdapter {
 	@Override
 	public long getItemId(int position) {
 		// TODO Auto-generated method stub
-		Lugar lugar = (Lugar)getItem(position);
+		Lugar lugar = (Lugar) getItem(position);
 		return lugar.getId();
 	}
 
@@ -60,23 +77,27 @@ public class ListLugaresAdapter extends BaseAdapter {
 		LayoutInflater inflater = activity.getLayoutInflater();
 		View view = inflater.inflate(R.layout.elemento_lista, null, true);
 		ImageView imgViewIcono = (ImageView) view.findViewById(R.id.icono);
-		TextView textViewTitulo = (TextView) view.findViewById(R.id.textViewTitulo);
+		TextView textViewTitulo = (TextView) view
+				.findViewById(R.id.textViewTitulo);
 		TextView textViewInfo = (TextView) view.findViewById(R.id.textViewInfo);
-		Lugar lugar = (Lugar)lista.elementAt(position);
+
+		Lugar lugar = (Lugar) lista.elementAt(position);
 		textViewTitulo.setText(lugar.getNombre());
 		textViewInfo.setText(lugar.toString());
-		
-		Drawable icon = obtenDrawableIcon("XXXXXX");
+
+		Drawable icon = obtenDrawableIcon(lugar.getCategoria().getIcon());
 		imgViewIcono.setImageDrawable(icon);
 
 		return view;
 	}
-	
+
 	public Drawable obtenDrawableIcon(String icon) {
-		Resources res =  activity.getResources();
-		TypedArray iconosLugares = res.obtainTypedArray(R.array.iconos_lugares);
-		//
-		return iconosLugares.getDrawable(0);
+		// Buscamos la posici—n de icon
+		int posicion = valoresIconosLugares.indexOf(icon);
+		// -1 si no existe lo ponemos a 0 (icono ND: No Definido)
+		if (posicion == -1)
+			posicion = 0;
+		return drawableIconosLugares.getDrawable(posicion);
 	}
-	
+
 }

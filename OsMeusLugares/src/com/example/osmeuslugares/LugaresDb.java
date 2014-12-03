@@ -18,7 +18,7 @@ public class LugaresDb extends SQLiteOpenHelper {
 	private SQLiteDatabase db;
 	private static String nombre = "lugares.db";
 	private static CursorFactory factory = null;
-	private static int version = 2;
+	private static int version = 6;
 
 
 	public LugaresDb(Context context) {
@@ -45,7 +45,9 @@ public class LugaresDb extends SQLiteOpenHelper {
 
 			sql = "CREATE TABLE Categoria("
 					+ "cat_id INTEGER PRIMARY KEY AUTOINCREMENT, "
-					+ "cat_nombre TEXT NOT NULL);";
+					+ "cat_nombre TEXT NOT NULL, " 
+					+ "cat_icon TEXT NOT NULL"
+					+ ");";
 
 			db.execSQL(sql);
 
@@ -60,15 +62,18 @@ public class LugaresDb extends SQLiteOpenHelper {
 	}
 
 	private void insertarLugaresPrueba() {
-		db.execSQL("INSERT INTO Categoria(cat_nombre) " + "VALUES('Playas')");
-		db.execSQL("INSERT INTO Categoria(cat_nombre) " + "VALUES('Restaurantes')");
-		db.execSQL("INSERT INTO Categoria(cat_nombre) " + "VALUES('Hoteles')");
-		db.execSQL("INSERT INTO Categoria(cat_nombre) " + "VALUES('Otros')");
+		db.execSQL("INSERT INTO Categoria(cat_nombre, cat_icon) " + "VALUES('Playas', 'icono_playa')");
+		db.execSQL("INSERT INTO Categoria(cat_nombre, cat_icon) " + "VALUES('Restaurantes', 'icono_restaurante')");
+		db.execSQL("INSERT INTO Categoria(cat_nombre, cat_icon) " + "VALUES('Hoteles', 'icono_hotel')");
+		db.execSQL("INSERT INTO Categoria(cat_nombre, cat_icon) " + "VALUES('Otros','icono_vista_panor‡mica')");
 
 		db.execSQL("INSERT INTO Lugar(lug_nombre, lug_categoria_id, lug_direccion, lug_ciudad, lug_telefono, lug_url, lug_comentario) "
 				+ "VALUES('Praia de Riazor',1, 'Riazor','A Coru–a','981000000','','')");
 		db.execSQL("INSERT INTO Lugar(lug_nombre, lug_categoria_id, lug_direccion, lug_ciudad, lug_telefono, lug_url, lug_comentario) "
 				+ "VALUES('Praia do Orzan',1, 'Orzan','A Coru–a','981000000','','')");
+		db.execSQL("INSERT INTO Lugar(lug_nombre, lug_categoria_id, lug_direccion, lug_ciudad, lug_telefono, lug_url, lug_comentario) "
+				+ "VALUES('O Bebedeiro',2, 'Monte Alto','A Coru–a','981000000','','')");
+		
 		Log.i("INFO", "Registros de prueba insertados");
 	}
 
@@ -97,7 +102,7 @@ public class LugaresDb extends SQLiteOpenHelper {
 		SQLiteDatabase db = this.getReadableDatabase();
 		Cursor cursor = db
 				.rawQuery(
-						"SELECT Lugar.*, cat_nombre "
+						"SELECT Lugar.*, cat_nombre, cat_icon "
 								+ "FROM Lugar join Categoria on lug_categoria_id = cat_id",
 						null);
 		// Se podr’a usar query() en vez de rawQuery
@@ -109,8 +114,9 @@ public class LugaresDb extends SQLiteOpenHelper {
 			lugar.setNombre(cursor.getString(cursor.getColumnIndex(Lugar.C_NOMBRE)));
 			Long idCategoria = cursor.getLong(cursor.getColumnIndex(Lugar.C_CATEGORIA_ID));
 			String nombreCategoria = cursor.getString(cursor.getColumnIndex(Categoria.C_NOMBRE));
+			String icon = cursor.getString(cursor.getColumnIndex(Categoria.C_ICON));
 			
-			lugar.setCategoria(new Categoria(idCategoria, nombreCategoria));
+			lugar.setCategoria(new Categoria(idCategoria, nombreCategoria,icon));
 			
 			lugar.setDireccion(cursor.getString(cursor.getColumnIndex(Lugar.C_DIRECCION)));
 			lugar.setCiudad(cursor.getString(cursor.getColumnIndex(Lugar.C_CIUDAD)));
@@ -124,15 +130,16 @@ public class LugaresDb extends SQLiteOpenHelper {
 
 	public Vector<Categoria> cargarCategoriasDesdeBD() {
 		Vector<Categoria> resultado = new Vector<Categoria>();
+		Categoria categoria = new Categoria();
 		SQLiteDatabase db = this.getReadableDatabase();
 		Cursor cursor = db.rawQuery("SELECT * FROM Categoria ORDER By cat_nombre",
 				null);
 		//Como es para un spinner incluir una primera opci—n por defecto
-		resultado.add(new Categoria(0L,"Seleccionar..."));
+		resultado.add(new Categoria(0L,"Seleccionar...","icono_nd"));
 		while (cursor.moveToNext()) {
-			Categoria categoria = new Categoria();
 			categoria.setId(cursor.getLong(cursor.getColumnIndex(Categoria.C_ID)));
 			categoria.setNombre(cursor.getString(cursor.getColumnIndex(Categoria.C_NOMBRE)));
+			categoria.setIcon(cursor.getString(cursor.getColumnIndex(Categoria.C_ICON)));
 			resultado.add(categoria);
 		}
 		return resultado;

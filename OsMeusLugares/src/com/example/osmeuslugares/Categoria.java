@@ -54,10 +54,11 @@ public class Categoria {
 	 * @param id
 	 * @param nombre
 	 */
-	public Categoria(Long id, String nombre) {
+	public Categoria(Long id, String nombre, String icon) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
+		this.icon = icon;
 	}
 
 

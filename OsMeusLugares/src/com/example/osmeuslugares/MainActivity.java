@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
@@ -13,6 +14,8 @@ import android.widget.Toast;
 
 public class MainActivity extends Activity {
 
+	MediaPlayer mediaPlayer; 
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -32,11 +35,8 @@ public class MainActivity extends Activity {
 		/* Leer preferencia de mœsica */
 		boolean reproduccirMusica = getPreferenciaMusica();
 		if (reproduccirMusica){
-			Toast.makeText(getBaseContext(), "Mœsica ON",
-					Toast.LENGTH_LONG).show();
-		} else {
-			Toast.makeText(getBaseContext(), "Mœsica OFF",
-					Toast.LENGTH_LONG).show();
+			mediaPlayer = MediaPlayer.create(this, R.raw.musica_fondo);
+			//mediaPlayer.start();
 		}
 
 		// //////////////////
@@ -100,4 +100,44 @@ public class MainActivity extends Activity {
 		Intent i = new Intent(this, PreferenciasActivity.class);
 		startActivity(i);
 	}
+
+	/* (non-Javadoc)
+	 * @see android.app.Activity#onRestart()
+	 */
+	@Override
+	protected void onRestart() {
+		// TODO Auto-generated method stub
+		super.onRestart();
+	}
+
+	/* (non-Javadoc)
+	 * @see android.app.Activity#onPause()
+	 */
+	@Override
+	protected void onPause() {
+		// TODO Auto-generated method stub
+		super.onPause();
+	}
+
+	/* (non-Javadoc)
+	 * @see android.app.Activity#onStart()
+	 */
+	@Override
+	protected void onStart() {
+		// TODO Auto-generated method stub
+		super.onStart();
+		mediaPlayer.start();
+	}
+
+	/* (non-Javadoc)
+	 * @see android.app.Activity#onStop()
+	 */
+	@Override
+	protected void onStop() {
+		// TODO Auto-generated method stub
+		super.onStop();
+		mediaPlayer.stop();
+	}
+	
+	
 }
