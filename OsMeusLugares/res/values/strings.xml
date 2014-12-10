@@ -15,5 +15,9 @@
     <string name="add_lugar">Engadir Lugar</string>
     <string name="edit_lugar">Editar Lugar</string>
     <string name="edit_delete">Eliminar Lugar</string>
+    <string name="ver_web">Ver web</string>
+    <string name="marcar_telefono">marcar teléfono</string>
+    <string name="coordenadas_gps">Coordenadas GPS</string>
+    <string name="enviar_por_email">Enviar por email</string>
 
 </resources>

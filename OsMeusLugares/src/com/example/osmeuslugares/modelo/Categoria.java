@@ -1,4 +1,4 @@
-package com.example.osmeuslugares;
+package com.example.osmeuslugares.modelo;
 
 import android.content.res.Resources;
 import android.content.res.TypedArray;

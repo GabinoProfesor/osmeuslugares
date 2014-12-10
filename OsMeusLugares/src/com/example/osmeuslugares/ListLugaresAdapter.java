@@ -5,6 +5,10 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Vector;
 
+import com.example.osmeuslugares.modelo.Lugar;
+import com.example.osmeuslugares.modelo.bd.LugaresDb;
+import com.example.osmeuslugares.modelo.bd.RecursoIcono;
+
 import android.app.Activity;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
@@ -22,10 +26,7 @@ public class ListLugaresAdapter extends BaseAdapter {
 	private final Activity activity;
 	private Vector<Lugar> lista;
 	private LugaresDb lugaresDb;
-
-	Resources res;
-	TypedArray drawableIconosLugares;
-	List<String> valoresIconosLugares;
+	private RecursoIcono recursoIcono;
 
 	/**
 	 * @param activity
@@ -36,14 +37,9 @@ public class ListLugaresAdapter extends BaseAdapter {
 		this.activity = activity;
 		this.lista = new Vector<Lugar>();
 		actualizarDesdeBd();
+		this.recursoIcono = new RecursoIcono(activity);
 
-		// Cargar recursos iconos
-		res = activity.getResources();
-		drawableIconosLugares = res
-				.obtainTypedArray(R.array.drawable_iconos_lugares);
 		
-		valoresIconosLugares = (List<String>) Arrays.asList(res
-				.getStringArray(R.array.valores_iconos_lugares));
 		
 	}
 
@@ -85,19 +81,13 @@ public class ListLugaresAdapter extends BaseAdapter {
 		textViewTitulo.setText(lugar.getNombre());
 		textViewInfo.setText(lugar.toString());
 
-		Drawable icon = obtenDrawableIcon(lugar.getCategoria().getIcon());
+		Drawable icon = recursoIcono.obtenDrawableIcon(
+				lugar.getCategoria().getIcon());
 		imgViewIcono.setImageDrawable(icon);
 
 		return view;
 	}
 
-	public Drawable obtenDrawableIcon(String icon) {
-		// Buscamos la posici—n de icon
-		int posicion = valoresIconosLugares.indexOf(icon);
-		// -1 si no existe lo ponemos a 0 (icono ND: No Definido)
-		if (posicion == -1)
-			posicion = 0;
-		return drawableIconosLugares.getDrawable(posicion);
-	}
+
 
 }

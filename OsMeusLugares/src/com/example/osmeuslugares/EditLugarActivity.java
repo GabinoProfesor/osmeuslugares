@@ -1,5 +1,7 @@
 package com.example.osmeuslugares;
 
+import com.example.osmeuslugares.modelo.Lugar;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -22,7 +24,7 @@ public class EditLugarActivity extends Activity {
 	private TextView editTextUrl;
 	private TextView editTextComentario;
 
-	CategoriasAdapter categoriasAdapter;
+	SpinnerCategoriasAdapter categoriasAdapter;
 	private boolean add;
 
 	@Override
@@ -34,7 +36,7 @@ public class EditLugarActivity extends Activity {
 		editTextNombre = (TextView) findViewById(R.id.editTextNombre);
 		// Categoria
 		spinnerCategoria = (Spinner) findViewById(R.id.spinnerCategoria);
-		categoriasAdapter = new CategoriasAdapter(this);
+		categoriasAdapter = new SpinnerCategoriasAdapter(this);
 		spinnerCategoria.setAdapter(categoriasAdapter);
 		// Direccion
 		editTextDireccion = (TextView) findViewById(R.id.editDireccion);

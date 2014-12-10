@@ -2,6 +2,9 @@ package com.example.osmeuslugares;
 
 import java.util.Vector;
 
+import com.example.osmeuslugares.modelo.Categoria;
+import com.example.osmeuslugares.modelo.bd.LugaresDb;
+
 import android.app.Activity;
 import android.database.SQLException;
 import android.view.LayoutInflater;
@@ -11,7 +14,7 @@ import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-public class CategoriasAdapter extends BaseAdapter {
+public class SpinnerCategoriasAdapter extends BaseAdapter {
 
 	private final Activity activity;
 	private Vector<Categoria> lista;
@@ -21,7 +24,7 @@ public class CategoriasAdapter extends BaseAdapter {
 	 * @param activity
 	 * @param lista
 	 */
-	public CategoriasAdapter(Activity activity) {
+	public SpinnerCategoriasAdapter(Activity activity) {
 		super();
 		this.activity = activity;
 		this.lista = new Vector<Categoria>();
@@ -30,7 +33,7 @@ public class CategoriasAdapter extends BaseAdapter {
 
 	public void cargarDatosDesdeBd() throws SQLException{
 		lugaresDb = new LugaresDb(activity);
-		this.lista = lugaresDb.cargarCategoriasDesdeBD();
+		this.lista = lugaresDb.cargarCategoriasDesdeBD(true);
 	}
 	@Override
 	public int getCount() {

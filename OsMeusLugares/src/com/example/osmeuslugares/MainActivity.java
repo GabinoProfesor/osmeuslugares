@@ -1,5 +1,7 @@
 package com.example.osmeuslugares;
 
+import com.example.osmeuslugares.modelo.bd.LugaresDb;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -31,17 +33,16 @@ public class MainActivity extends Activity {
 		} catch (Exception e) {
 			Log.e(getClass().toString(), e.getMessage());
 		}
-
-		/* Leer preferencia de mœsica */
-		boolean reproduccirMusica = getPreferenciaMusica();
-		if (reproduccirMusica){
-			mediaPlayer = MediaPlayer.create(this, R.raw.musica_fondo);
-			//mediaPlayer.start();
-		}
+		
+		mediaPlayer = MediaPlayer.create(this, 
+					R.raw.musica_fondo);
+	
 
 		// //////////////////
 
 	}
+	
+
 	
 	public boolean getPreferenciaMusica(){
 		SharedPreferences preferencias =
@@ -126,7 +127,11 @@ public class MainActivity extends Activity {
 	protected void onStart() {
 		// TODO Auto-generated method stub
 		super.onStart();
-		mediaPlayer.start();
+		if (this.getPreferenciaMusica()) {
+			mediaPlayer.start();
+		} else {
+			mediaPlayer.stop();
+		}
 	}
 
 	/* (non-Javadoc)

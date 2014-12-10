@@ -1,6 +1,9 @@
-package com.example.osmeuslugares;
+package com.example.osmeuslugares.modelo.bd;
 
 import java.util.Vector;
+
+import com.example.osmeuslugares.modelo.Categoria;
+import com.example.osmeuslugares.modelo.Lugar;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -18,7 +21,7 @@ public class LugaresDb extends SQLiteOpenHelper {
 	private SQLiteDatabase db;
 	private static String nombre = "lugares.db";
 	private static CursorFactory factory = null;
-	private static int version = 6;
+	private static int version = 7;
 
 
 	public LugaresDb(Context context) {
@@ -72,7 +75,7 @@ public class LugaresDb extends SQLiteOpenHelper {
 		db.execSQL("INSERT INTO Lugar(lug_nombre, lug_categoria_id, lug_direccion, lug_ciudad, lug_telefono, lug_url, lug_comentario) "
 				+ "VALUES('Praia do Orzan',1, 'Orzan','A Coru–a','981000000','','')");
 		db.execSQL("INSERT INTO Lugar(lug_nombre, lug_categoria_id, lug_direccion, lug_ciudad, lug_telefono, lug_url, lug_comentario) "
-				+ "VALUES('O Bebedeiro',2, 'Monte Alto','A Coru–a','981000000','','')");
+				+ "VALUES('O Bebedeiro',2, 'Monte Alto','A Coru–a','981000000','http://www.adegaobebedeiro.com/','')");
 		
 		Log.i("INFO", "Registros de prueba insertados");
 	}
@@ -128,14 +131,17 @@ public class LugaresDb extends SQLiteOpenHelper {
 		return resultado;
 	}
 
-	public Vector<Categoria> cargarCategoriasDesdeBD() {
+	public Vector<Categoria> cargarCategoriasDesdeBD(boolean opcSeleccionar) {
 		Vector<Categoria> resultado = new Vector<Categoria>();
 		Categoria categoria = new Categoria();
 		SQLiteDatabase db = this.getReadableDatabase();
 		Cursor cursor = db.rawQuery("SELECT * FROM Categoria ORDER By cat_nombre",
 				null);
+		if (opcSeleccionar) {
 		//Como es para un spinner incluir una primera opci—n por defecto
+	
 		resultado.add(new Categoria(0L,"Seleccionar...","icono_nd"));
+		}
 		while (cursor.moveToNext()) {
 			categoria.setId(cursor.getLong(cursor.getColumnIndex(Categoria.C_ID)));
 			categoria.setNombre(cursor.getString(cursor.getColumnIndex(Categoria.C_NOMBRE)));

@@ -1,6 +1,7 @@
-package com.example.osmeuslugares;
+package com.example.osmeuslugares.modelo;
 
 import java.util.HashMap;
+
 
 import android.content.ContentValues;
 import android.os.Bundle;
@@ -181,7 +182,7 @@ public class Lugar {
  * Generado para insertar/actualizar registro Lugar en BBDD
  * @return
  */
-	ContentValues getContentValues() {
+	public ContentValues getContentValues() {
 		ContentValues reg = new ContentValues();
 		reg.put(C_NOMBRE, nombre);
 		reg.put(C_CATEGORIA_ID, categoria.getId());
@@ -193,7 +194,7 @@ public class Lugar {
 		return reg;
 	}
 	
-	Bundle getBundle() {
+	public Bundle getBundle() {
 		Bundle bundle = new Bundle();
 		bundle.putLong(C_ID, id);
 		bundle.putString(C_NOMBRE, nombre);
@@ -210,7 +211,7 @@ public class Lugar {
 		return bundle;
 	}
 	
-	void setBundle(Bundle bundle) {
+	public void setBundle(Bundle bundle) {
 		id=bundle.getLong(C_ID);
 		nombre=bundle.getString(C_NOMBRE);
 		

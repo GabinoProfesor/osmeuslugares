@@ -3,11 +3,17 @@ package com.example.osmeuslugares;
 import java.util.ArrayList;
 import java.util.Vector;
 
+import com.example.osmeuslugares.modelo.CoordenadasGPS;
+import com.example.osmeuslugares.modelo.Lugar;
+import com.example.osmeuslugares.modelo.Sonidos;
+
 import android.app.Activity;
 import android.app.ListActivity;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.location.Location;
+import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.ContextMenu;
@@ -23,13 +29,14 @@ import android.widget.Toast;
 public class ListLugares extends ListActivity {
 	private ListLugaresAdapter listLugaresAdapter;
 	Bundle extras = new Bundle();
+	Sonidos sonidos;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_list_lugares);
 		registerForContextMenu(super.getListView());
-
+		sonidos = new Sonidos(this);
 		listLugaresAdapter = new ListLugaresAdapter(this);
 		setListAdapter(listLugaresAdapter);
 		/* Leer preferencia de info */
@@ -57,6 +64,9 @@ public class ListLugares extends ListActivity {
 	protected void onListItemClick(ListView l, View v, int position, long id) {
 		// TODO Auto-generated method stub
 		super.onListItemClick(l, v, position, id);
+		
+		sonidos.playSonido1();
+		
 		Lugar itemLugar = (Lugar) getListAdapter().getItem(position);
 		Bundle extras = itemLugar.getBundle();
 		extras.putBoolean("add", false);
@@ -73,6 +83,12 @@ public class ListLugares extends ListActivity {
 		Intent i = new Intent(this, EditLugarActivity.class);
 		i.putExtras(extras);
 		startActivityForResult(i, 1234);
+	}
+	
+	private void lanzarWeb(String url) {
+		Intent intent = new Intent(Intent.ACTION_VIEW);
+		intent.setData(Uri.parse(url));
+		startActivity(intent);
 	}
 
 	public boolean getPreferenciaVerInfoAmpliada() {
@@ -119,6 +135,12 @@ public class ListLugares extends ListActivity {
 			lanzarEditLugar(extras);
 			return true;
 		}
+		if (id == R.id.mi_localizacion){
+			CoordenadasGPS coordenadasGPS = new CoordenadasGPS(this);
+			Location localizacion = coordenadasGPS.getLocalizacion();
+			Toast.makeText(getBaseContext(), "Coordenadas acutales: " + localizacion.toString(),
+					Toast.LENGTH_SHORT).show();
+		}
 		return super.onOptionsItemSelected(item);
 	}
 
@@ -151,10 +173,47 @@ public class ListLugares extends ListActivity {
 			Toast.makeText(getBaseContext(), "Eliminar: " + lugar.getNombre(),
 					Toast.LENGTH_SHORT).show();
 			return true;
-
+		case R.id.marcar_telefono_lugar:
+			lanzarMarcarTelefono(lugar.getTelefono());
+			return true;	
+		case R.id.ver_web:
+			if (lugar.getUrl().isEmpty()) {
+				Toast.makeText(getBaseContext(), "No hay direcci—n",
+						Toast.LENGTH_SHORT).show();	
+			} else {
+				lanzarWeb(lugar.getUrl());
+			}
+			return true;
+		case R.id.enviar_por_email:
+			lanzarEmail(lugar);
 		default:
 			return super.onOptionsItemSelected(item);
 		}
+	}
+
+	private void lanzarEmail(Lugar lugar) {
+		// TODO Auto-generated method stub
+		Intent i = new Intent(Intent.ACTION_SEND);
+		i.setType("message/rfc822");
+		String []to ={"lag@fernandowirtz.com"};
+		String subject = "Lugar " + lugar.getNombre();
+		String body = lugar.toString();
+		i.putExtra(Intent.EXTRA_EMAIL, to);
+		i.putExtra(Intent.EXTRA_SUBJECT, subject);
+		i.putExtra(Intent.EXTRA_TEXT, body);
+		startActivity(i);
+		
+	}
+
+	private void lanzarMarcarTelefono(String telefono) {
+		// TODO Auto-generated method stub
+		if (!telefono.isEmpty()) {
+			Intent i = new Intent(Intent.ACTION_CALL);
+			i.setData(Uri.parse("tel:"+telefono));
+			startActivity(i);
+			
+		}
+		
 	}
 
 }
