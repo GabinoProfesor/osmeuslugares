@@ -37,36 +37,38 @@ public final class R {
     public static final class id {
         public static final int RelativeLayout1=0x7f0b0001;
         public static final int ScrollView1=0x7f0b0000;
-        public static final int acerca_de=0x7f0b001e;
-        public static final int action_settings=0x7f0b0014;
-        public static final int add_lugar=0x7f0b0015;
+        public static final int acerca_de=0x7f0b001f;
+        public static final int action_settings=0x7f0b0015;
+        public static final int add_lugar=0x7f0b0016;
         public static final int buttonGuardar=0x7f0b000e;
-        public static final int cerrar=0x7f0b0016;
-        public static final int delete_lugar=0x7f0b0019;
+        public static final int cerrar=0x7f0b0017;
+        public static final int delete_lugar=0x7f0b001a;
         public static final int editComentario=0x7f0b000d;
         public static final int editDireccion=0x7f0b0007;
         public static final int editTelefono=0x7f0b0009;
         public static final int editTextNombre=0x7f0b0003;
         public static final int editUrl=0x7f0b000b;
-        public static final int edit_lugar=0x7f0b0018;
-        public static final int enviar_por_email=0x7f0b001c;
-        public static final int icono=0x7f0b0011;
-        public static final int imageView1=0x7f0b0010;
-        public static final int listLugares=0x7f0b001d;
-        public static final int marcar_telefono_lugar=0x7f0b001b;
-        public static final int mi_localizacion=0x7f0b0017;
-        public static final int salir=0x7f0b001f;
+        public static final int edit_lugar=0x7f0b0019;
+        public static final int enviar_por_email=0x7f0b001d;
+        public static final int icono=0x7f0b0012;
+        public static final int imageView1=0x7f0b0011;
+        public static final int listLugares=0x7f0b001e;
+        public static final int marcar_telefono_lugar=0x7f0b001c;
+        public static final int mi_localizacion=0x7f0b0018;
+        public static final int salir=0x7f0b0020;
         public static final int spinnerCategoria=0x7f0b0005;
-        public static final int textView1=0x7f0b000f;
+        public static final int textView1=0x7f0b0010;
         public static final int textViewCategoria=0x7f0b0004;
         public static final int textViewComentario=0x7f0b000c;
         public static final int textViewDireccion=0x7f0b0006;
-        public static final int textViewInfo=0x7f0b0013;
+        public static final int textViewInfo=0x7f0b0014;
         public static final int textViewNombre=0x7f0b0002;
         public static final int textViewTelefono=0x7f0b0008;
-        public static final int textViewTitulo=0x7f0b0012;
+        public static final int textViewTitulo=0x7f0b0013;
+        public static final int textViewTituloListado=0x7f0b000f;
         public static final int textViewUrl=0x7f0b000a;
-        public static final int ver_web=0x7f0b001a;
+        public static final int ver_web=0x7f0b001b;
+        public static final int ver_web_titulo=0x7f0b0021;
     }
     public static final class layout {
         public static final int activity_acerca_de=0x7f030000;
@@ -83,6 +85,7 @@ public final class R {
         public static final int list_lugares_contextual=0x7f0a0003;
         public static final int main=0x7f0a0004;
         public static final int preferencias=0x7f0a0005;
+        public static final int titulo_lugares_contextual=0x7f0a0006;
     }
     public static final class raw {
         public static final int musica_fondo=0x7f050000;

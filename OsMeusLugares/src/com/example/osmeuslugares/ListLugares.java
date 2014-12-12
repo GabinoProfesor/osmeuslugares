@@ -24,18 +24,21 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class ListLugares extends ListActivity {
 	private ListLugaresAdapter listLugaresAdapter;
 	Bundle extras = new Bundle();
 	Sonidos sonidos;
-
+	TextView titulo;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_list_lugares);
+		//titulo = (TextView)findViewById(R.id.textViewTituloListado);
 		registerForContextMenu(super.getListView());
+		//registerForContextMenu(titulo);
 		sonidos = new Sonidos(this);
 		listLugaresAdapter = new ListLugaresAdapter(this);
 		setListAdapter(listLugaresAdapter);
@@ -136,10 +139,18 @@ public class ListLugares extends ListActivity {
 			return true;
 		}
 		if (id == R.id.mi_localizacion){
+			try{
 			CoordenadasGPS coordenadasGPS = new CoordenadasGPS(this);
 			Location localizacion = coordenadasGPS.getLocalizacion();
-			Toast.makeText(getBaseContext(), "Coordenadas acutales: " + localizacion.toString(),
+			Toast.makeText(getBaseContext(), 
+					"Coordenadas actuales: " + 
+			localizacion.toString(),
 					Toast.LENGTH_SHORT).show();
+			} catch (Exception e) {
+				Toast.makeText(getBaseContext(), 
+						e.getMessage(),
+						Toast.LENGTH_SHORT).show();
+			}
 		}
 		return super.onOptionsItemSelected(item);
 	}
@@ -157,10 +168,17 @@ public class ListLugares extends ListActivity {
 		super.onCreateContextMenu(menu, v, menuInfo);
 		MenuInflater inflater = getMenuInflater();
 		inflater.inflate(R.menu.list_lugares_contextual, menu);
-	}
+		/*
+		if (v.getId() == R.id.textViewTituloListado) {
+			inflater.inflate(R.menu.titulo_lugares_contextual, menu);
+		} else {
+		inflater.inflate(R.menu.list_lugares_contextual, menu);
+		}*/
+		}
 
 	@Override
 	public boolean onContextItemSelected(MenuItem item) {
+		
 		AdapterContextMenuInfo info = (AdapterContextMenuInfo)item.getMenuInfo();
 		Lugar lugar = (Lugar)listLugaresAdapter.getItem(info.position);
 		switch (item.getItemId()) {
@@ -186,6 +204,12 @@ public class ListLugares extends ListActivity {
 			return true;
 		case R.id.enviar_por_email:
 			lanzarEmail(lugar);
+		
+			/**
+		case R.id.ver_web_titulo:
+			Toast.makeText(getBaseContext(), "Ver Web titulo",
+					Toast.LENGTH_SHORT).show();	
+					*/
 		default:
 			return super.onOptionsItemSelected(item);
 		}
